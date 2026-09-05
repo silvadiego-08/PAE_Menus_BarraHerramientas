@@ -17,12 +17,12 @@ Interfaz gráfica que permite administrar productos en memoria. Cada producto ti
 - Tabla con menú contextual (Editar, Eliminar, Ver detalle).  
 - Estilos CSS personalizados para la interfaz.
 
-## Requisitos
-- JDK 21  
-- Maven  
-- Conexión a Internet para descargar dependencias  
-- (Opcional) Habilitar Lombok en el IDE para evitar warnings
-
+## Pasos para ejecutar
+1. Clonar el proyecto desde el repositorio.
+2. Abrirlo en un IDE compatible con JavaFX (como IntelliJ IDEA o Eclipse).
+3. Asegurarse de tener configurado el SDK de Java y la librería de JavaFX.
+4. Ejecutar la clase principal `gueguenseApplication`.
+#### En que caso que no deje ejecutar la clase principal, hacer click secundario en el `pom.xml` y seleccionar la opcion "ADD A MAVEN PROJECT"
 
 ## Funcionamiento (resumen)
 - Al iniciar aparece un formulario (izquierda) para ingresar/editar productos y, al centro, una tabla con el inventario.  
