@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #f4f6f7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.productoController">
+
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <MenuBar>
+                <menus>
+                    <Menu text="Archivo">
+                        <items>
+                            <MenuItem fx:id="mitNuevo" onAction="#accionNuevo" text="Nuevo" />
+                            <MenuItem fx:id="mitLimpiar" onAction="#accionLimpiar" text="Limpiar" />
+                            <SeparatorMenuItem />
+                            <MenuItem fx:id="mitSalir" onAction="#accionSalir" text="Salir" />
+                        </items>
+                    </Menu>
+                    <Menu text="Producto">
+                        <items>
+                            <MenuItem fx:id="mitGuardar" onAction="#accionGuardar" text="Guardar" />
+                            <MenuItem fx:id="mitEditar" onAction="#accionEditar" text="Editar" />
+                            <MenuItem fx:id="mitEliminar" onAction="#accionEliminar" text="Eliminar" />
+                        </items>
+                    </Menu>
+                    <Menu text="Ayuda">
+                        <items>
+                            <MenuItem fx:id="mitInformacion" onAction="#accionAcercaDe" text="Acerca de" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+
+            <ToolBar prefHeight="40.0">
+                <items>
+                    <HBox HBox.hgrow="ALWAYS" />
+
+                    <Button fx:id="btnNuevo" onAction="#accionNuevo" prefWidth="80.0" text="Nuevo" />
+                    <Separator orientation="VERTICAL" />
+                    <Button fx:id="btnGuardar" onAction="#accionGuardar" prefWidth="80.0" style="-fx-background-color: #008f9c; -fx-text-fill: white;" text="Guardar" />
+                    <Separator orientation="VERTICAL" />
+                    <Button fx:id="btnEditar" onAction="#accionEditar" prefWidth="80.0" text="Editar" />
+                    <Separator orientation="VERTICAL" />
+                    <Button fx:id="btnEliminar" onAction="#accionEliminar" prefWidth="80.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Eliminar" />
+
+                    <HBox HBox.hgrow="ALWAYS" />
+                </items>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <left>
+        <GridPane hgap="10.0" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 0 0;" vgap="15.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="80.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="180.0" />
+            </columnConstraints>
+
+            <Label text="Registro de Producto" textFill="#2c3e50" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+                <GridPane.margin>
+                    <Insets bottom="10.0" />
+                </GridPane.margin>
+            </Label>
+
+            <Label text="Código:" GridPane.rowIndex="1">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <TextField fx:id="txtCodigo" promptText="Ej. PROD-001" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Nombre:" GridPane.rowIndex="2">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <TextField fx:id="txtNombre" promptText="Nombre del producto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Categoría:" GridPane.rowIndex="3">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <ComboBox fx:id="cmbCategoria" prefWidth="250.0" promptText="Seleccione..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Precio (C$):" GridPane.rowIndex="4">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <TextField fx:id="txtPrecio" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <Label text="Existencia:" GridPane.rowIndex="5">
+                <font><Font name="System Bold" size="12.0" /></font>
+            </Label>
+            <TextField fx:id="txtExistencia" promptText="Cantidad en bodega" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label fx:id="lblEstado" text="Esperando acción..." textFill="#7f8c8d" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                <font>
+                    <Font name="System Italic" size="12.0" />
+                </font>
+                <GridPane.margin>
+                    <Insets top="20.0" />
+                </GridPane.margin>
+            </Label>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </left>
+
+    <center>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <Label text="Inventario Disponible" textFill="#2c3e50">
+                <font>
+                    <Font name="System Bold" size="16.0" />
+                </font>
+            </Label>
+
+            <TableView fx:id="tblProductos" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCodigo" prefWidth="100.0" text="Código" />
+                    <TableColumn fx:id="colNombre" prefWidth="220.0" text="Nombre" />
+                    <TableColumn fx:id="colCategoria" prefWidth="120.0" text="Categoría" />
+                    <TableColumn fx:id="colPrecio" prefWidth="90.0" text="Precio" />
+                    <TableColumn fx:id="colExistencia" prefWidth="90.0" text="Existencia" />
+                </columns>
+                <contextMenu>
+                    <ContextMenu>
+                        <items>
+                            <MenuItem fx:id="mnuEditar" onAction="#accionEditar" text="Editar producto" />
+                            <MenuItem fx:id="mnuEliminar" onAction="#accionEliminar" text="Eliminar producto" />
+                            <SeparatorMenuItem />
+                            <MenuItem onAction="#accionVerDetalle" text="Ver detalle" />
+                        </items>
+                    </ContextMenu>
+                </contextMenu>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>
